@@ -1,0 +1,26 @@
+html, body  {
+    background-image: linear-gradient(to  right, #8da1ff, #8ddaff, #8dffb2 );
+}
+.square {
+    height: 800px;
+    width: 800px;
+    background-color: #555;
+  }
+
+.question {
+
+  }
+.score {
+
+}
+
+.header{
+
+}
+
+  .square1{
+    height: 20px;
+    width: 70px;
+    background-color: #ffffff;
+    border: black;
+  }
