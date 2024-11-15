@@ -44,21 +44,22 @@ var questions = [
   document.getElementById("answer")
 
   document.querySelector("form").addEventListener("submit", function(event) {
-    console.log("User answer:", userAnswer);
-    console.log("Question index:", questionIndex);
     event.preventDefault(); // Prevent form from submitting
   
     var userAnswer = document.getElementById("answer").value;
-    var questionIndex = 0; /* index of the current question */
+     /* index of the current question */
   
     checkAnswer(userAnswer, questionIndex);
   });
   
 
-
+  var questionIndex = 0;
 function checkAnswer(userAnswer, questionIndex) {
+  console.log("User answer:", userAnswer);
+  console.log("Question index:", questionIndex);
   if (userAnswer === correctAnswers[questionIndex]) {
-      handleCorrectAnswer();
+
+      handleCorrectAnswer(1);
       alert("Nice Job!");
   } else {
       alert("Try again!");
