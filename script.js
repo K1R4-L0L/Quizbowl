@@ -1,75 +1,37 @@
-const quiz = document.getElementById("question");
-// Array containing the questions
-var questions = [
-    "What is the capital of Spain?",
-    "What color is math?"
-   
-  ];
-  
-  // Function to select a random question from the array
-  function getRandomQuestion() {
-    var randomIndex = Math.floor(Math.random() * questions.length);
-    return questions[randomIndex];
-  }
-  
-  // Function to display the quiz
-  function displayquiz(maxQuestions) {
-    var quiz = document.getElementById("question");
-    var numQuestionsDisplayed = 0;
-  
-    // Loop until max number of questions are displayed
-    while (numQuestionsDisplayed < maxQuestions) {
-      var question = getRandomQuestion();
-  
-      // Add the question to the quiz
-      var questionDiv = document.createElement("div");
-      questionDiv.innerHTML = question;
-      quiz.appendChild(questionDiv);
-  
-      // Increment the number of questions displayed
-      numQuestionsDisplayed++;
+let questionList = ["What is the color of math", "What is the color of english","Have we met before? Possibly in...", "What is 0 in Tennis", "Viral hit or miss song is called...?", "Best Animal?", "Skibidi, Skibidi, Hawk Tuah ...", "Who made Literal Legend","My favorite app?","This is the ... Inside out 2 song"];
+let answerList = ["Red", "Blue","Michigan", "Love", "Mia Khalifa", "Octopus", "Gyatt", "Ayesha Erotica", "Instagram","Freaky"];
+let score = 0;
+let questionIndex = 0;
+
+const question = document.querySelector(".question");
+const button = document.querySelector(".button");
+const input = document.querySelector("#name");
+let scoreContainer = document.querySelector(".score");
+
+question.textContent = questionList[questionIndex];
+
+let submitFunction = () =>{
+  button.addEventListener('click', () =>{
+    if(input.value === answerList[questionIndex]){
+      questionIndex += 1;
+      score += 1;
+      question.textContent = questionList[questionIndex];
+      scoreContainer.textContent = "Score: " + score;
+    } else {
+      score -= 1;
+      scoreContainer.textContent = "Score: " + score;
     }
-  }
-  
-  // Call the function to display the quiz (10 questions in this example)
-  window.onload = function() {
-  console.log("Displaying quiz");
-  displayquiz(1);
-  }
-  var correctAnswers = [
-    "Madrid",
-    "Red",
-  ];
-
-  document.getElementById("answer")
-
-  document.querySelector("form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form from submitting
-  
-    var userAnswer = document.getElementById("answer").value;
-     /* index of the current question */
-  
-    checkAnswer(userAnswer, questionIndex);
+    endGame();
   });
-  
+}
 
-  var questionIndex = 0;
-function checkAnswer(userAnswer, questionIndex) {
-  console.log("User answer:", userAnswer);
-  console.log("Question index:", questionIndex);
-  if (userAnswer === correctAnswers[questionIndex]) {
-
-      handleCorrectAnswer(1);
-      alert("Nice Job!");
-  } else {
-      alert("Try again!");
+let endGame = () =>{
+  if(questionIndex >= questionList.length){
+    scoreContainer.textContent = "Final Score: " + score;
+    question.textContent = "Congratulations, play again!";
+    input.style.display = "none";
+    button.style.display = "none";
   }
 }
-function handleCorrectAnswer() {
-  // Remove the current question
-  var quiz = document.getElementById("question");
-  quiz.innerHTML = "";
 
-  // Display a new question
-  displayquiz(1);
-}
+submitFunction();
